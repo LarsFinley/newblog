@@ -11,7 +11,6 @@ var Toggler = React.createClass({
 			  <div className="btn-group" data-toggle="buttons">
 			    <button onClick={this.props.toggleActiveComp.bind(null, 'blog')}> Blog Display </button>
 			    <button onClick={this.props.toggleActiveComp.bind(null, 'form')}> Create New Blog Post </button>
-			  			    <button onClick={this.props.toggleActiveComp.bind(null, 'form')}> Create New Blog Post </button>
 
 			  </div>
 			</div>
