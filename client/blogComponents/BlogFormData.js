@@ -4,65 +4,65 @@ var BlogForm = require('./BlogForm');
 
 var BlogFormData = React.createClass({
 	getInitialState: function() {
-			return{
-				blogTitle: null,
-				blogContent: null,
-				blogAuthor: null,
-				blogImg: null,
-				blogDate: null,
-			}
-		},
-		contextTypes: {
-			sendNotification: React.PropTypes.func.isRequired
-		},
-		onTitleChange: function(e) {
-			this.setState({ blogTitle: e.target.value })
-		},
-		onContentChange: function(e) {
-			this.setState({ blogContent: e.target.value })
-		},
-		onAuthorChange: function(e) {
-			this.setState({ blogAuthor: e.target.value })
-		},
-		onImageChange: function(e) {
-			this.setState({ blogImage: e.target.value })
-		},
-		onDateChange: function(e) {
-			this.setState({ blogDate: e.target.value })
-		},
-		submitBlogToServer: function(e) {
-			e.preventDefault();
-			
-			var data= {
-				title: this.state.blogTitle,
-				content: this.state.blogContent,
-				author: this.state.blogAuthor,
-				image: this.state.blogImage,
-				date: this.state.blogDate,
-			};
+		return{
+			title: null,
+			content: null,
+			author: null,
+			img: null,
+			date: null,
+		}
+	},
+	contextTypes: {
+		sendNotification: React.PropTypes.func.isRequired
+	},
+	onTitleChange: function(e) {
+		this.setState({ title: e.target.value })
+		console.log(this.state.title);
+	},
+	onContentChange: function(e) {
+		this.setState({ content: e.target.value })
+		console.log(this.state.content);
+	},
+	onImgChange: function(e) {
+		this.setState({ img: e.target.value })
+		console.log(this.state.img);
+	},
+	submitBlogToServer: function(e) {
+		e.preventDefault();
+	
+		var blog = {};
+		blog.title = this.state.title.trim();
+		blog.content = this.state.content.trim();
+		blog.img = this.state.img.trim();
 
-			var self = this;
-			$.ajax({
-				url: '/api/post',
-				method: 'POST',
-				data: data,
-			}).done(function(data) {
-				console.log(data);
-				self.props.toggleActiveComp('blog');
-				self.context.sendNotification("Hey you added a blog post!");
-			});
+		console.log(blog);
 
-			this.setState({blogTitle: '', blogContent: '', blogAuthor: '', blogImage: '', blogDate: ','});
-		},
-		render: function() {
-			return (
-				<BlogForm
-					submitBlogToServer={ this.submitBlogToServer }
-					onTitleChange= { this.onTitleChange }
-					onContentChange= { this.onContentChange }
-					onDateChange= { this.onDateChange }
-					onImageChange= { this.onImageChange } 
-					onAuthorChange= { this.onAuthorChange }/>
+		this.newBlogPost(blog);
+		this.setState({ title: '', content: '', img: '' })
+	},
+	newBlogPost : function(blog){
+		$.ajax({
+			url: '/api/post',
+			method: 'POST',
+			data: blog,
+	success: function(data) {
+		this.props.toggleActiveComp('blog');
+		console.log(data);
+	}.bind(this),
+		error: function(xhr, status, err){
+			console.error('/api/post', status, err.toString())
+		}.bind(this)
+		})
+	},
+	render: function() {
+		return (
+			<BlogForm
+				submitBlogToServer = { this.submitBlogToServer }
+				onTitleChange = { this.onTitleChange }
+				onContentChange = { this.onContentChange }
+				onDateChange = { this.onDateChange }
+				onImgChange = { this.onImgChange } 
+				onAuthorChange  = { this.onAuthorChange }/>
 		)
 	}
 });
