@@ -44,10 +44,8 @@ var App = React.createClass({
     return (
       <div>
         <Notifier>
-          <NavBar activeComponent={this.state.activeComponent} setActiveComponent={ this.setActiveComponent }/>
-            <div>
+          <NavBar setActiveComponent={ this.setActiveComponent } getActiveComponent= {this.getActiveComponent} />
               { this.showWhichComponent() }
-            </div>
         </Notifier>
       </div>           
       )

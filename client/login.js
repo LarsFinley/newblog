@@ -15,8 +15,8 @@ function Login(props) {
                 <div className="input-group login-input-wrapper">
                   <span className="input-group-addon login-input" id="basic-addon1"><i className="fa fa-user"></i></span>
                   <input onChange={ props.onEmailChange }required type="text" className="form-control login-input" placeholder="Username"/>
-                  </div>
-              	</div>
+                </div>
+              </div>
               <div className="form-group">
                 <div className="input-group login-input-wrapper">
                   <span className="input-group-addon login-input" id="basic-addon1"><i className="fa fa-lock"></i></span>

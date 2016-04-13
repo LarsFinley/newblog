@@ -8,7 +8,7 @@ var EditBlogData = React.createClass({
 			title: null,
 			content: null,
 			author: null,
-			image: null,
+			img: null,
 			date: null,
 			comments: null,
 		}

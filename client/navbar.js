@@ -26,16 +26,16 @@ var NavBar = React.createClass({
         )
     });
 		return (
-      <nav id="navbarPad" className="navbar navbar-light bg-faded ">
-        <a className="navbar-brand" href="#">Lars Finley Martinson</a>
-        <ul className="nav navbar-nav">
+      <nav id="navbarPad" className="navbar navbar-light bg-faded navbar-collapse">
+        <a className="navbar-brand newFont" href="#">Lars Finley Martinson</a>
+        <ul className="nav navbar-right navbar-nav">
           <li><a data-scroll href="#who"><h3>Who I Am</h3></a></li>
           <li><a data-scroll href="#travels"><h3>Travels</h3></a></li>
           <li><a data-scroll href="#contact"><h3>Contact</h3></a></li>
           <li>
-            <div className="dropdown dropMargin">
+            <div className="dropdown dropMargin menuPadding">
               <a data-scroll className="dropdown-toggle" data-toggle="dropdown"><h3>Blog</h3></a>
-              <ul className="dropdown-menu">
+              <ul className="dropdown-menu ">
                 { link }
               </ul>
             </div>

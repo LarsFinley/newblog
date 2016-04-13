@@ -12,7 +12,7 @@ function BlogList(props) {
 					title = { item.title }
 					content = { item.content } 
 					author = { item.author }
-					image = { item.image }
+					img = { item.img }
 					date = { item.date }
 					comment = { item.comment } />
 				);
