@@ -1,10 +1,27 @@
+/*
+Index
+  Blog Box
+    Blog List Data
+      Blog List
+        Blog Card
+    Edit Blog Card Data
+      Edit Blog Card Form
+    Blog Form Data
+      Blog Form
+    Single Blog Card Data
+      Single Blog Card
+        Comment Form Data
+          Comment Form
+        Comment List
+          Comment Card
+*/
 var React = require('react');
 var BlogCard = require('./BlogCard');
 
 
 function BlogList(props) {
 		//map through data and pass it to blog card; 
-		var blogList = props.blogArray.map(item => {
+		var allBlogs = props.blogArray.map(item => {
 			return(
 			    <BlogCard
 			    getId = { props.getId }
@@ -19,10 +36,10 @@ function BlogList(props) {
 		})
 		return (
 			<div className="blog-flex">
-				{ blogList }
+				{ allBlogs }
 			</div>	
 			)
-	}
+	};
 
 BlogList.propTypes = {
 	blogArray: React.PropTypes.array.isRequired

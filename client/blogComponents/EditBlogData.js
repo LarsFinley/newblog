@@ -1,3 +1,20 @@
+/*
+Index
+  Blog Box
+    Blog List Data
+      Blog List
+        Blog Card
+    Edit Blog Card Data
+      Edit Blog Card Form
+    Blog Form Data
+      Blog Form
+    Single Blog Detail Data
+      Single Blog Detail
+        Comment Form Data
+          Comment Form
+        Comment List
+          Comment Card
+*/
 var React = require('react');
 var EditBlogForm = require('./EditBlogForm');
 
@@ -30,8 +47,26 @@ var EditBlogData = React.createClass({
 			})
 		})
 	},
+	componentDidMount: function(){
+    this.loadOneBlogFromServer();
+  },
+  updateBlogForm: function(blog){
+    $.ajax({
+      url: '/api/blog/' + this.props.id,
+      dataType: 'json',
+      type: 'PUT',
+      data: blog,
+      success: function(data){
+        this.loadOneBlogFromServer();
+        this.props.toggleActiveComp('oneBlog');
+      }.bind(this),
+      error: function(xhr, status, err){
+        console.error(status, err.toString());
+      }.bind(this)
+    });
+  },
 	contextTypes: {
-			sendNotification: React.PropTypes.func.isRequired
+		sendNotification: React.PropTypes.func.isRequired
 	},
 	onTitleChange: function(e) {
 		this.setState({ title: e.target.value })
@@ -39,17 +74,8 @@ var EditBlogData = React.createClass({
 	onContentChange: function(e) {
 		this.setState({ content: e.target.value })
 	},
-	onAuthorChange: function(e) {
-		this.setState({ Author: e.target.value })
-	},
 	onImgChange: function(e) {
 		this.setState({ img: e.target.value })
-	},
-	onDateChange: function(e) {
-		this.setState({ date: e.target.value })
-	},
-	onCommentsChange: function(e) {
-		this.setState({ comments: e.target.value })
 	},
 	componentDidMount: function() {
 		this.loadOneBlogFromServer()
@@ -60,10 +86,7 @@ var EditBlogData = React.createClass({
 			var data = {
 				title: this.state.title,
 				content: this.state.content,
-				author: this.state.author,
-				date: this.state.date,
 				img: this.state.img,
-				comments: this.state.comments,
 			};
 			console.log("loaded aaaaaaaa", data);
 

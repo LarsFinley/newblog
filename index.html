@@ -11,6 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="./public/main.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<script type="text/javascript" src="https://secure-ds.serving-sys.com/BurstingcachedScripts/libraries/greensock/1_18_0/TweenMax.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
 	
 </head>
 
@@ -23,7 +25,23 @@
 	<!-- <script src="scroll.js"></script>
 	<script>smoothScroll.init();</script>	 -->
 	<script src="/static/bundle.js"></script>
+	<script>
 
-	
+    var tl = new TimelineMax({ paused: true, repeat: -1 });
+
+		tl.fromTo("#pic1", 20, { ease: Power0.easeNone, x: -300}, { ease: Power0.easeNone, x: -2200});
+
+		$('.jumbocolor').mouseenter(function() {
+  	tl.play();
+		});
+
+		$('.jumbocolor').mouseleave(function() {
+  	tl.stop();
+		});
+
+	</script>
+	<script src="./public/wow.js"></script>
+  <script> new WOW().init(); </script>
+
 	</body>
 </html>

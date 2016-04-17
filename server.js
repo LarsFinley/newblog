@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var session = require('express-session');
 var Post = require('./models/blog.js');
+var User = require('./models/user.js');
 var postRoutes  = require('./routes/post');
 
 mongoose.connect('mongodb://localhost/post');
@@ -43,7 +44,7 @@ app.use(session({
    maxAge: 60000
  }
 }));
-app.use('/api/post', postRoutes);
+app.use('/api/blog', postRoutes);
 app.use('/public', express.static('public'));
 app.use(flash());
 app.get('/', function(req, res) {

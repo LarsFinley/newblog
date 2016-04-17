@@ -1,3 +1,20 @@
+/*
+Index
+  Blog Box
+    Blog List Data
+      Blog List
+        Blog Card
+    Edit Blog Card Data
+      Edit Blog Card Form
+    Blog Form Data
+      Blog Form
+    Single Blog Detail Data
+      Single Blog Detail
+        Comment Form Data
+          Comment Form
+        Comment List
+          Comment Card
+*/
 var React = require('react');
 var BlogForm = require('./BlogForm');
 
@@ -7,9 +24,7 @@ var BlogFormData = React.createClass({
 		return{
 			title: null,
 			content: null,
-			author: null,
 			img: null,
-			date: null,
 		}
 	},
 	contextTypes: {
@@ -42,7 +57,7 @@ var BlogFormData = React.createClass({
 	},
 	newBlogPost : function(blog){
 		$.ajax({
-			url: '/api/post',
+			url: '/api/blog',
 			method: 'POST',
 			data: blog,
 	success: function(data) {
@@ -50,7 +65,7 @@ var BlogFormData = React.createClass({
 		console.log(data);
 	}.bind(this),
 		error: function(xhr, status, err){
-			console.error('/api/post', status, err.toString())
+			console.error('/api/blog', status, err.toString())
 		}.bind(this)
 		})
 	},
@@ -60,9 +75,7 @@ var BlogFormData = React.createClass({
 				submitBlogToServer = { this.submitBlogToServer }
 				onTitleChange = { this.onTitleChange }
 				onContentChange = { this.onContentChange }
-				onDateChange = { this.onDateChange }
-				onImgChange = { this.onImgChange } 
-				onAuthorChange  = { this.onAuthorChange }/>
+				onImgChange = { this.onImgChange } />
 		)
 	}
 });
